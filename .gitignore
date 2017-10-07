@@ -1,0 +1,9 @@
+# currently unneeded code
+test
+
+# packages
+node_modules
+
+# privy to me
+config.json
+firebase.json
