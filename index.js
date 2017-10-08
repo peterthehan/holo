@@ -1,10 +1,13 @@
 const Discord = require('discord.js');
-const firebase = require('firebase');
+const admin = require('firebase-admin');
 const config = require('./config.json');
-const firebaseConfig = require('./firebase.json');
+const serviceAccount = require('./serviceAccountKey.json');
 
 // initialize firebase
-firebase.initializeApp(firebaseConfig);
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://holo-31299.firebaseio.com"
+});
 
 // create bot
 const client = new Discord.Client();

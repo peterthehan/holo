@@ -1,5 +1,5 @@
-const firebase = require('firebase');
-const database = firebase.database();
+const admin = require('firebase-admin');
+const database = admin.database();
 
 module.exports = {
   pushEmojis: (message, data) => {
