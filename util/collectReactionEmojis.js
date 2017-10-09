@@ -2,6 +2,7 @@ const emoji = require('node-emoji');
 const { parseReactionEmojis, } = require('../util/parseEmojis');
 const { formatEmojis, formatServerData, formatUserData, formatEmojiData, } = require('../util/formatData');
 const { pushEmojiData, pushData, } = require('../util/pushData');
+const { log, } = require('../util/log');
 
 module.exports = {
   collectReactionEmojis: (message) => {
@@ -46,9 +47,7 @@ module.exports = {
         emojis.forEach(i => pushEmojiData(message, i));
         data.forEach(i => pushData(i));
 
-        console.log('********************************************************************************');
-        console.log(`${message.guild.name}|${message.channel.name}|${message.author.tag}: ${message.content}`);
-        console.log(`Reaction Emojis (${emojis.length}): ${emojis.map(i => i.isDefault ? i.identifier : message.guild.emojis.get(i.identifier).name).join(' ')}`);
+        log(message, emojis, 'Message');
       }
     );
   },
