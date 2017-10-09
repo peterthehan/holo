@@ -43,7 +43,7 @@ module.exports = {
         data.forEach(i => pushData(i));
 
         console.log('********************************************************************************');
-        console.log(`${message.author.tag}: ${message.content}`);
+        console.log(`${message.guild.name}|${message.channel.name}|${message.author.tag}: ${message.content}`);
         console.log(`Reaction Emojis (${emojis.length}): ${emojis.map(i => i.isDefault ? i.identifier : message.guild.emojis.get(i.identifier).name).join(' ')}`);
       }
     );
