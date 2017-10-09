@@ -9,7 +9,7 @@ module.exports = {
     const parsedDefaultEmojis = parseDefaultEmojis(message);
     
     if (parsedServerEmojis.length == 0 && parsedDefaultEmojis.length == 0) {
-      return
+      return;
     }
     
     // format emoji to appropriate form for database

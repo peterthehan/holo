@@ -6,7 +6,7 @@ const { pushEmojiData, pushData, } = require('../util/pushData');
 module.exports = {
   collectReactionEmojis: (message) => {
     const collector = message.createReactionCollector(
-      () => true, // no filter, get all reactions
+      (reaction, user) => !user.bot, // only accept non-bot reactions
       { time: 30000, }
     );
 
@@ -21,7 +21,11 @@ module.exports = {
         const parsedReactionEmojis = parseReactionEmojis(collected);
 
         // parallel array to parsedReactionEmojis of users
-        const users = collected.map(i => i.users);
+        // account for 3 scenarios:
+        // 1. only non-bot users react, normal scenario
+        // 2. only bot users react, collector above filters them out
+        // 3. a mix of both react, filter below
+        const users = collected.map(i => i.users.filter(j => !j.bot));
 
         // format emoji to appropriate form for database
         const emojis = parsedReactionEmojis
