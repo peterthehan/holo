@@ -3,13 +3,12 @@ const emoji = require('node-emoji');
 module.exports = {
   parseServerEmojis: (message) => {
     const string = message.content;
-    const serverEmojiList = message.guild.emojis.map(i => i.id);
 
     // match all server emojis, strip non-id characters, and validate
     const serverEmojiRegExp = /:\d+>/gi;
     const serverEmojis = (string.match(serverEmojiRegExp) || [])
       .map(i => i.substring(1, i.length - 1))
-      .filter(i => serverEmojiList.includes(i));
+      .filter(i => message.guild.emojis.has(i));
 
     return serverEmojis;
   },
@@ -23,5 +22,16 @@ module.exports = {
       .map(i => i.substring(1, i.length - 1));
 
     return defaultEmojis;
+  },
+  parseReactionEmojis: (collected) => {
+    const reactionEmojis = collected.keyArray().map(i => {
+      if (emoji.hasEmoji(i)) {
+        const unemojified = emoji.unemojify(i);
+        return unemojified.substring(1, unemojified.length - 1);
+      }
+      return i;
+    });
+
+    return reactionEmojis;
   },
 }

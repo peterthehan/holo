@@ -1,36 +1,27 @@
-module.exports = {
-  formatEmojis: (message, emojis, isDefault, isReaction) => {
-    return emojis.map(i => {
-      return {
-        identifier: i,
-        timestamp: parseInt(message.createdTimestamp, 10),
-        user: parseInt(message.author.id, 10),
-        channel: parseInt(message.channel.id, 10),
-        isDefault: isDefault,
-        isReaction: isReaction,
-      };
-    });
-  },
-  formatServerData: (message, emojis) => {
-    const filteredServerEmojis = emojis.filter(i => !i.isDefault).map(i => i.identifier);
-    const emojiPaths = filteredServerEmojis.map(i => `guilds/${message.guild.id}/emojis/${i}`);
-    const emojiUpdates = filteredServerEmojis.map(i => {
-      return {
-        name: message.guild.emojis.get(i).name,
-        url: message.guild.emojis.get(i).url,
-      };
-    });
+// helper function
+function updateObj(paths, updates) {
+  return paths.map((i, index) => {
+    return { path: i, updates: updates[index], };
+  });
+}
 
+module.exports = {
+  formatEmojis: (message, identifier, user, isDefault, isReaction) => {
+    return {
+      identifier: identifier,
+      timestamp: message.createdTimestamp,
+      user: user,
+      channel: message.channel.id,
+      isDefault: isDefault,
+      isReaction: isReaction,
+    };
+  },
+  formatServerData: (message) => {
     const paths = [
-      `users/${message.author.id}`,
       `guilds/${message.guild.id}`,
       `guilds/${message.guild.id}/channels/${message.channel.id}`,
-    ].concat(emojiPaths);
+    ];
     const updates = [
-      {
-        name: message.author.tag,
-        url: message.author.displayAvatarURL,
-      },
       {
         name: message.guild.name,
         url: message.guild.iconURL,
@@ -38,13 +29,37 @@ module.exports = {
       {
         name: message.channel.name,
       },
-    ].concat(emojiUpdates);
+    ];
 
-    return paths.map((i, index) => {
+    return updateObj(paths, updates);
+  },
+  formatUserData: (message, emojis) => {
+    const allUserIds = [message.author.id].concat(emojis.map(i => i.user));
+    const uniqueUserIds = [...new Set(allUserIds)]; // remove duplicates
+
+    const paths = uniqueUserIds.map(i => `users/${i}`);
+    const updates = uniqueUserIds.map(i => {
       return {
-        path: i,
-        updates: updates[index],
+        name: message.guild.members.get(i).user.tag,
+        url: message.guild.members.get(i).user.displayAvatarURL,
       };
     });
+
+    return updateObj(paths, updates);
+  },
+  formatEmojiData: (message, emojis) => {
+    // only need name and image data for server emojis
+    const filteredServerEmojiIds = emojis.filter(i => !i.isDefault).map(i => i.identifier);
+    const uniqueServerEmojiIds = [...new Set(filteredServerEmojiIds)]; // remove duplicates
+
+    const paths = uniqueServerEmojiIds.map(i => `guilds/${message.guild.id}/emojis/${i}`);
+    const updates = uniqueServerEmojiIds.map(i => {
+      return {
+        name: message.guild.emojis.get(i).name,
+        url: message.guild.emojis.get(i).url,
+      };
+    });
+
+    return updateObj(paths, updates);
   },
 }
