@@ -6,7 +6,7 @@ const serviceAccount = require('./serviceAccountKey.json');
 // initialize firebase
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://holo-31299.firebaseio.com"
+  databaseURL: config.databaseURL,
 });
 
 // create bot

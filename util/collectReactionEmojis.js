@@ -1,4 +1,5 @@
 const emoji = require('node-emoji');
+const config = require('../config.json');
 const { parseReactionEmojis, } = require('../util/parseEmojis');
 const { formatEmojis, formatServerData, formatUserData, formatEmojiData, } = require('../util/formatData');
 const { pushEmojiData, pushData, } = require('../util/pushData');
@@ -8,7 +9,7 @@ module.exports = {
   collectReactionEmojis: (message) => {
     const collector = message.createReactionCollector(
       (reaction, user) => !user.bot, // only accept non-bot reactions
-      { time: 30000, }
+      { time: parseInt(config.timeout, 10), }
     );
 
     collector.on(
