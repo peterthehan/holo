@@ -12,30 +12,21 @@
 </div>
 
 ## About
-Holo is a [Discord](https://discordapp.com/) bot that logs emoji usage for analysis.
+Holo is a [Discord](https://discordapp.com/) bot that logs emoji usage for analysis. Holo is capable of tracking emojis from both messages and message reactions.
 
 ## Setup
 Read the following to host Holo yourself!
 
-#### Get Holo
-You will need a Discord account to make a Discord bot.
-
-1. Type `git clone https://github.com/Johj/holo.git`.
-2. Type `cd holo/` and `npm install`.
-3. Create a new file named `config.json` at the root of the Holo project folder. The file should look like the following:
-```js
-{
-  "token": "YOUR_DISCORD_BOT_TOKEN_HERE"
-}
-```
-Keep your token and the file containing it **private**.
-
 #### Set Up Firebase
-You will need a Google account to set up Firebase.
+The following instructions assume you are signed in with a Google account.
 
-1. Visit [Firebase](https://firebase.google.com/).
-2. Click the `GO TO CONSOLE` button located on the navigation bar and on the following page, add a new project.
-3. On the sidebar, visit `Database` and go to the `RULES` tab. Set your rules to the following:
+1. Go to [Firebase](https://firebase.google.com/).
+2. Click `GO TO CONSOLE`, located on the site's navigation bar.
+3. Create a new project.
+4. Go to `Database`, located on the sidebar, and click the `GET STARTED` button.
+    * Under the `DATA` tab, take note of the database URL (e.g. `https://your-project-name.firebaseio.com/`) associated with your project. You will need this [later](https://github.com/Johj/holo#get-holo).
+5. Go to the `RULES` tab and set your rules to the following:
+
 ```js
 // These rules don't allow anyone read or write access to your database
 {
@@ -45,9 +36,40 @@ You will need a Google account to set up Firebase.
   }
 }
 ```
-4. On the sidebar, click the gear icon and go to `Project settings`.
-5. Under `Settings`, go to the tab `SERVICE ACCOUNTS` and click the `GENERATE NEW PRIVATE KEY` button. This will download a unique file containing Firebase Admin credentials. Keep this file **private**.
-6. Rename the file to `serviceAccountKey.json` and move this file to the root of the Holo project folder.
+
+6. On the sidebar, click the gear icon and go to `Project settings`.
+7. Go to the `SERVICE ACCOUNTS` tab and click the `GENERATE NEW PRIVATE KEY` button. This will download a unique file containing Firebase Admin credentials.
+8. Rename the file to `serviceAccountKey.json`.
+
+>Keep this credentials file **private**!
+
+#### Set Up Discord Bot
+The following instructions assume you are signed in with a Discord account.
+
+1. Go to Discord's [My Apps](https://discordapp.com/developers/applications/me) page.
+2. Create a new app.
+3. Click the `Create a Bot User` button and confirm.
+4. You can create an invitation link for your bot with `https://discordapp.com/oauth2/authorize?client_id=YOUR_DISCORD_BOT_CLIENT_ID_HERE&scope=bot`.
+5. Click `click to reveal` to view your bot's token.
+
+>Keep your Discord bot token and any file containing it **private**!
+
+#### Get Holo
+
+1. Type `git clone https://github.com/Johj/holo.git`.
+2. Type `cd holo/` and `npm install`.
+3. Move the `serviceAccountKey.json` file to the root of the Holo project folder.
+4. Create a new file named `config.json` at the root of the Holo project folder. This file should look like the following:
+
+```js
+{
+  "token": "YOUR_DISCORD_BOT_TOKEN_HERE",
+  "databaseURL": "YOUR_DATABASE_URL_HERE",
+  "timeout": "30000"
+}
+```
+
+>`timeout` is in milliseconds. Keep it somewhere between 15000 and 30000 for optimal performance.
 
 #### Run Holo
 1. Type `npm test` or `node index.js` to run. Holo is ready to log!
