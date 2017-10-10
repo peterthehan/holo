@@ -69,7 +69,7 @@ The following instructions assume you are signed in with a Discord account.
 }
 ```
 
->`timeout` is in milliseconds. Keep it somewhere between 15000 and 30000 for optimal performance.
+>`timeout` (in milliseconds) is how long Holo looks at each message for user reactions. Keep it somewhere between 15000 and 30000 for optimal performance.
 
 #### Run Holo
 1. Type `npm test` or `node index.js` to run. Holo is ready to log!
