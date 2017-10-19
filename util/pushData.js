@@ -3,7 +3,7 @@ const database = admin.database();
 
 module.exports = {
   pushEmojiData: (message, data) => {
-    const path = `guilds/${message.guild.id}/messages/${message.createdAt.getFullYear()}-${message.createdAt.getMonth()}/emojis`;
+    const path = `guilds/${message.guild.id}/messages/${message.createdAt.getFullYear()}-${message.createdAt.getMonth() + 1}/emojis`;
     const newPostKey = database.ref().child(path).push().key;
 
     const updates = {};
