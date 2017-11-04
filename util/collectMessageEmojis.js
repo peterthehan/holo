@@ -1,7 +1,7 @@
 const { parseServerEmojis, parseDefaultEmojis, } = require('../util/parseEmojis');
 const { formatEmojis, formatServerData, formatUserData, formatEmojiData, } = require('../util/formatData');
 const { pushEmojiData, pushData, } = require('../util/pushData');
-const { log, } = require('../util/log');
+const { log, emojiLog, } = require('../util/log');
 
 module.exports = {
   collectMessageEmojis: (message) => {
@@ -28,6 +28,7 @@ module.exports = {
     emojis.forEach(i => pushEmojiData(message, i));
     data.forEach(i => pushData(i));
 
-    log(message, emojis, 'Message');
+    log(message);
+    emojiLog(message, emojis, 'Message');
   },
 }
