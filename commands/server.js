@@ -7,6 +7,7 @@ const {
   filterEmojisByType,
   countEmojis,
   sortEmojis,
+  getTotalCount,
   formatEmojis,
 } = require('../util/processEmojis');
 const database = admin.database();
@@ -35,15 +36,13 @@ serverInstructions = (message) => {
 serverInfo = (message, db, filter, isDescending) => {
   const aggregated = aggregateEmojis(db);
   const data = filterEmojisByType(aggregated, filter);
-  if (!data.length) {
+  const count = countEmojis(message, data, filter);
+  const sorted = sortEmojis(count, isDescending);
+  if (!Object.keys(count).length || !getTotalCount(sorted)) {
     error(message, '', `I have nothing to show you!`);
     return;
   }
 
-  const count = countEmojis(message, data, filter);
-
-  // convert count into an iterable, sort, and format
-  const sorted = sortEmojis(count, isDescending);
   const formatted = formatEmojis(message, sorted);
 
   // initialize embed object
