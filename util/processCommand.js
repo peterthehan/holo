@@ -1,5 +1,5 @@
 const config = require('../config.json');
-const { log, } = require('../util/log');
+const { log, } = require('./log');
 
 module.exports = {
   processCommand: (message) => {
