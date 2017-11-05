@@ -14,10 +14,21 @@
 ## About
 Holo is a [Discord](https://discordapp.com/) bot that logs emoji usage for analysis. Holo is capable of tracking emojis from both messages and message reactions.
 
+## Commands
+Prefix: ,, @mention
+
+- Bot:
+  [about](https://github.com/Johj/holo/blob/master/commands/about.js),
+  [help](https://github.com/Johj/holo/blob/master/commands/help.js),
+  [ping](https://github.com/Johj/holo/blob/master/commands/ping.js)
+- Database:
+  [server](https://github.com/Johj/holo/blob/master/commands/server.js),
+  [user](https://github.com/Johj/holo/blob/master/commands/user.js)
+
 ## Setup
 Read the following to host Holo yourself!
 
-#### Set Up Firebase
+#### Firebase Setup
 The following instructions assume you are signed in with a Google account.
 
 1. Go to [Firebase](https://firebase.google.com/).
@@ -43,7 +54,7 @@ The following instructions assume you are signed in with a Google account.
 
 >Keep this credentials file **private**!
 
-#### Set Up Discord Bot
+#### Discord Bot Setup
 The following instructions assume you are signed in with a Discord account.
 
 1. Go to Discord's [My Apps](https://discordapp.com/developers/applications/me) page.
@@ -59,7 +70,7 @@ The following instructions assume you are signed in with a Discord account.
 1. Type `git clone https://github.com/Johj/holo.git`.
 2. Type `cd holo/` and `npm install`.
 3. Move the `serviceAccountKey.json` file to the root of the Holo project folder.
-4. Create a new file named `config.json` at the root of the Holo project folder. This file should look like the following:
+4. Create a new file named `config.json` at the root of the Holo project folder. The file should contain the following:
 
 ```js
 {
