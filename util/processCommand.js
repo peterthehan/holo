@@ -4,7 +4,7 @@ const { log, } = require('./log');
 module.exports = {
   processCommand: (message) => {
     const mentionRegExp = RegExp(`^<@!?${message.client.user.id}>`);
-    const noPrefix = !message.content.startsWith(config.prefix);
+    const noPrefix = !config.prefix || !message.content.startsWith(config.prefix);
     const noMention = !mentionRegExp.test(message.content);
 
     // ignore if not a command
