@@ -9,7 +9,7 @@ module.exports = {
   collectReactionEmojis: (message) => {
     const collector = message.createReactionCollector(
       (reaction, user) => !user.bot, // only accept non-bot reactions
-      { time: parseInt(config.timeout, 10), }
+      { time: parseInt(config.reaction_timeout, 10), }
     );
 
     collector.on('end', (collected) => {
