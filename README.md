@@ -67,7 +67,8 @@ The following instructions assume you are signed in with a Discord account.
   "databaseURL": "YOUR_DATABASE_URL_HERE",
   "reaction_timeout": "30000",
   "pager_timeout": "60000",
-  "prefix": "."
+  "prefix": ",",
+  "owner_id": "206161807491072000"
 }
 ```
 
