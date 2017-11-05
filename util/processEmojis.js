@@ -25,8 +25,8 @@ module.exports = {
     return data.filter(i => i.user === user);
   },
   countEmojis: (message, data, filter) => {
-    // only consider server emojis that are currently in use
-    // by preemptively adding their identifier keys into count
+    // only consider server emojis that are currently in use by
+    // preemptively adding their identifier keys into count
     // this way, if identifier is not in count and is not default, we ignore
     const count = {};
     if (filter !== 'default') {
@@ -60,6 +60,9 @@ module.exports = {
       .sort((a, b) => {
         return isDescending ? b.count - a.count : a.count - b.count;
       });
+  },
+  getTotalCount: (sorted) => {
+    return sorted.reduce((a, b) => a + b.count, 0);
   },
   formatEmojis: (message, sorted) => {
     return sorted.map((i, index) => {
