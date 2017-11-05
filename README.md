@@ -65,11 +65,15 @@ The following instructions assume you are signed in with a Discord account.
 {
   "token": "YOUR_DISCORD_BOT_TOKEN_HERE",
   "databaseURL": "YOUR_DATABASE_URL_HERE",
-  "timeout": "30000"
+  "reaction_timeout": "30000",
+  "pager_timeout": "60000",
+  "prefix": "."
 }
 ```
 
->`timeout` (in milliseconds) is how long Holo looks at each message for user reactions. Keep it somewhere between 15000 and 30000 for optimal performance.
+>`reaction_timeout` (in milliseconds) is how long Holo looks at each message for user reactions. Keep it somewhere between 15000 and 30000 for optimal performance.
+
+>`pager_timeout` (in milliseconds) is how long Holo looks at each command message for pagination. Keep it somewhere between 30000 and 60000 for optimal duration.
 
 #### Run Holo
 1. Type `npm test` or `node index.js` to run. Holo is ready to log!
