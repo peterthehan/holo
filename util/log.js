@@ -5,4 +5,9 @@ module.exports = {
   emojiLog: (message, emojis, type) => {
     console.log(`  ${type} Emojis (${emojis.length}): ${emojis.map(i => i.isDefault ? i.identifier : message.guild.emojis.get(i.identifier).name).join(' ')}`);
   },
+  error: (message, title, description) => {
+    const e = { title: title, description: description, };
+    message.channel.send({ embed: e, });
+    console.log(description);
+  },
 }
