@@ -1,5 +1,4 @@
-const { collectReactionEmojis, } = require('../util/collectReactionEmojis');
-const { collectMessageEmojis, } = require('../util/collectMessageEmojis');
+const { collectMessageEmojis, collectReactionEmojis, } = require('../util/collectEmojis');
 const { processCommand, } = require('../util/processCommand');
 
 module.exports = (message) => {
