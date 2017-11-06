@@ -1,5 +1,5 @@
 const { collectMessageEmojis, collectReactionEmojis, } = require('../util/collectEmojis');
-const { processCommand, } = require('../util/processCommand');
+const { collectCommands, } = require('../util/collectCommands');
 
 module.exports = (message) => {
   // ignore bot messages and messages not from guild text channels
@@ -9,5 +9,5 @@ module.exports = (message) => {
 
   collectMessageEmojis(message);
   collectReactionEmojis(message);
-  processCommand(message);
+  collectCommands(message);
 }
