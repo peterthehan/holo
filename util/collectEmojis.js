@@ -1,9 +1,8 @@
 const emoji = require('node-emoji');
 const config = require('../config.json');
 const { parseServerEmojis, parseDefaultEmojis, parseReactionEmojis, } = require('./parseEmojis');
-const { formatEmojis, formatServerData, formatUserData, formatEmojiData, } = require('./formatData');
-const { pushEmojiData, pushData, } = require('./pushData');
-const { log, emojiLog, } = require('./log');
+const { formatEmojis, } = require('./formatData');
+const { writeData, } = require('./writeData');
 
 module.exports = {
   collectMessageEmojis: (message) => {
@@ -20,18 +19,7 @@ module.exports = {
     const defaultEmojis = parsedDefaultEmojis.map(i => formatEmojis(message, i, message.author.id, true, false));
     const emojis = serverEmojis.concat(defaultEmojis);
 
-    // format necessary id-to-name pairs for human-readability of data
-    const serverData = formatServerData(message);
-    const userData = formatUserData(message, []); // all the emojis are from the message author
-    const emojiData = formatEmojiData(message, emojis);
-    const data = serverData.concat(userData, emojiData);
-
-    // write changes to firebase via update
-    emojis.forEach(i => pushEmojiData(message, i));
-    data.forEach(i => pushData(i));
-
-    log(message);
-    emojiLog(message, emojis, 'Message');
+    writeData(message, emojis, 'Message');
   },
   collectReactionEmojis: (message) => {
     const collector = message.createReactionCollector(
@@ -63,18 +51,7 @@ module.exports = {
         })
         .reduce((a, b) => a.concat(b), []); // flatten
 
-      // format necessary id-to-name pairs for human-readability of data
-      const serverData = formatServerData(message);
-      const userData = formatUserData(message, emojis);
-      const emojiData = formatEmojiData(message, emojis);
-      const data = serverData.concat(userData, emojiData);
-
-      // write changes to firebase via update
-      emojis.forEach(i => pushEmojiData(message, i));
-      data.forEach(i => pushData(i));
-
-      log(message);
-      emojiLog(message, emojis, 'Reaction');
+      writeData(message, emojis, 'Reaction');
     });
   },
 }
