@@ -8,7 +8,6 @@ const {
   filterEmojisByUser,
   countEmojis,
   sortEmojis,
-  getTotalCount,
   formatEmojis,
 } = require('../util/processEmojis');
 const database = admin.database();
