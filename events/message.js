@@ -7,7 +7,7 @@ module.exports = (message) => {
     return;
   }
 
-  collectReactionEmojis(message);
   collectMessageEmojis(message);
+  collectReactionEmojis(message);
   processCommand(message);
 }
