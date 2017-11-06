@@ -1,5 +1,5 @@
 const config = require('../config.json');
-const { getTotalCount, } = require('../util/processEmojis');
+const { getTotalCount, } = require('./processEmojis');
 
 // helper functions
 function getCurrentPage(arr, page) {

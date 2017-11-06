@@ -5,6 +5,7 @@ const { pager, } = require('../util/pager');
 const {
   aggregateEmojis,
   filterEmojisByType,
+  filterEmojisByUser,
   countEmojis,
   sortEmojis,
   getTotalCount,
@@ -15,17 +16,19 @@ const database = admin.database();
 serverInstructions = (message) => {
   const prefix = !config.prefix ? `@${message.client.user.username} ` : config.prefix;
   const e = {
-    title: `${prefix}server [all|server|default] [reverse]`,
+    title: `${prefix}server [@mention] [all|server|default] [reverse]`,
     fields: [
+      {
+        name: '@mention',
+        value: `Filter user. If omitted, defaults to server.\n*e.g. ${prefix}server @${message.guild.members.get(config.owner_id).user.username} all*`,
+      },
       {
         name: 'all|server|default',
         value: `List emojis.\n*e.g. ${prefix}server all*`,
-        inline: false,
       },
       {
         name: 'reverse',
         value: `List in ascending order.\n*e.g. ${prefix}server all reverse*`,
-        inline: false,
       },
     ],
   };
@@ -33,12 +36,15 @@ serverInstructions = (message) => {
   message.channel.send({ embed: e, });
 }
 
-serverInfo = (message, db, filter, isDescending) => {
+serverInfo = (message, db, filter, user, isDescending) => {
   const aggregated = aggregateEmojis(db);
-  const data = filterEmojisByType(aggregated, filter);
+  const data = user != null
+    ? filterEmojisByUser(filterEmojisByType(aggregated, filter), user)
+    : filterEmojisByType(aggregated, filter);
   const count = countEmojis(message, data, filter);
   const sorted = sortEmojis(count, isDescending);
-  if (!Object.keys(count).length || !getTotalCount(sorted)) {
+
+  if (!Object.keys(count).length || !(sorted[0].count + sorted[sorted.length - 1].count)) {
     error(message, '', `I have nothing to show you!`);
     return;
   }
@@ -46,23 +52,26 @@ serverInfo = (message, db, filter, isDescending) => {
   const formatted = formatEmojis(message, sorted);
 
   // initialize embed object
-  const e = {
-    author: {
-      name: message.guild.name,
-      icon_url: !message.guild.iconURL ? '' : message.guild.iconURL,
-    },
-  };
+  let name;
+  let icon_url;
+  if (user != null) {
+    name = message.guild.members.get(user).user.tag;
+    icon_url = message.guild.members.get(user).user.displayAvatarURL;
+  } else {
+    name = message.guild.name;
+    icon_url = message.guild.iconURL;
+  }
+  const e = { author: { name: name, icon_url: icon_url, }, };
 
   pager(message, e, sorted, formatted);
 }
 
 exports.run = (message, args) => {
-  args = args.map(i => i.toLowerCase());
-  const filterIndex = args.findIndex(i => ['all', 'server', 'default',].includes(i));
+  args = args.map(i => i.toLowerCase()); // case-insensitive
 
   // options are order-insensitive to respect user's efforts
-  // must have a valid option
-  if (filterIndex !== -1) {
+  const filter = args.find(i => ['all', 'server', 'default',].includes(i));
+  if (filter) {
     database.ref(`guilds/${message.guild.id}/messages`).once('value', (snapshot) => {
       const db = snapshot.val();
       if (!db) {
@@ -70,8 +79,16 @@ exports.run = (message, args) => {
         return;
       }
 
-      const isDescending = !(args.length > 1 && ['reverse', 'r',].some(i => args.includes(i)));
-      serverInfo(message, db, args[filterIndex], isDescending);
+      // check @mention
+      let user = args.find(i => /<@!?\d+>/.test(i));
+      if (user) {
+        user = user.replace(/\D/gi, '');
+      }
+
+      // determine sort order
+      const isDescending = !['reverse', 'r',].some(i => args.includes(i));
+
+      serverInfo(message, db, filter, user, isDescending);
     }, (errorObject) => {
       console.log('The read failed: ' + errorObject.code);
     });

@@ -9,7 +9,6 @@ exports.run = (message, args) => {
     ],
     'Database': [
       'server',
-      'user',
     ],
   };
 
