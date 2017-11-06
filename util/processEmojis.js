@@ -21,37 +21,42 @@ module.exports = {
       ? data.filter(i => !i.isDefault)
       : data.filter(i => i.isDefault);
   },
-  filterEmojisByUser: (data, user) => {
-    return data.filter(i => i.user === user);
+  filterEmojisByField: (data, field, filter) => {
+    return data.filter(i => i[field] === filter);
   },
-  countEmojis: (message, data, filter) => {
-    // only consider server emojis that are currently in use by
-    // preemptively adding their identifier keys into count
-    // this way, if identifier is not in count and is not default, we ignore
+  countData: (data, field) => {
     const count = {};
-    if (filter !== 'default') {
-      const emojis = handleBadEmojis(message);
-      for (let i of emojis.keyArray()) {
-        count[i] = 0;
-      } 
-    }
-
-    // count
     for (let i of data) {
-      if (!(i.identifier in count)) {
-        if (!i.isDefault) {
-          continue; // ignore retired server emojis
-        }
-
-        count[i.identifier] = 0;
+      if (!count[i[field]]) {
+        count[i[field]] = 0;
       }
 
-      ++count[i.identifier];
+      ++count[i[field]];
     }
 
     return count;
   },
-  sortEmojis: (count, isDescending) => {
+  filterData: (message, count) => {
+    // ensure all current server emojis are represented
+    const emojis = handleBadEmojis(message);
+    for (let i of emojis.keyArray()) {
+      if (!count[i]) {
+        count[i] = 0;
+      }
+    }
+
+    // remove retired server emojis
+    for (let i of Object.keys(count)) {
+      if (emoji.hasEmoji(i) || emojis.has(i)) {
+        continue;
+      }
+
+      delete count[i];
+    }
+
+    return count;
+  },
+  sortData: (count, isDescending) => {
     return Object
       .keys(count)
       .map(i => {
@@ -69,6 +74,12 @@ module.exports = {
       return `${index + 1}. ` + (emoji.hasEmoji(i.identifier)
         ? emoji.get(i.identifier)
         : message.guild.emojis.get(i.identifier)) + `: ${i.count}`;
+    });
+  },
+  formatUsers: (message, sorted) => {
+    return sorted.map((i, index) => {
+      const user = message.guild.members.get(i.identifier).user;
+      return `${index + 1}. ${user} (${user.tag}): ${i.count}`;
     });
   },
 }

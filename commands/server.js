@@ -5,9 +5,10 @@ const { pager, } = require('../util/pager');
 const {
   aggregateEmojis,
   filterEmojisByType,
-  filterEmojisByUser,
-  countEmojis,
-  sortEmojis,
+  filterEmojisByField,
+  countData,
+  filterData,
+  sortData,
   formatEmojis,
 } = require('../util/processEmojis');
 const database = admin.database();
@@ -38,10 +39,10 @@ serverInstructions = (message) => {
 serverInfo = (message, db, filter, user, isDescending) => {
   const aggregated = aggregateEmojis(db);
   const data = user != null
-    ? filterEmojisByUser(filterEmojisByType(aggregated, filter), user)
+    ? filterEmojisByField(filterEmojisByType(aggregated, filter), 'user', user)
     : filterEmojisByType(aggregated, filter);
-  const count = countEmojis(message, data, filter);
-  const sorted = sortEmojis(count, isDescending);
+  const count = filterData(message, countData(data, 'identifier'));
+  const sorted = sortData(count, isDescending);
 
   if (!Object.keys(count).length || !(sorted[0].count + sorted[sorted.length - 1].count)) {
     error(message, '', `I have nothing to show you!`);
