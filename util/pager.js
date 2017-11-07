@@ -24,7 +24,7 @@ module.exports = {
     message.channel
       .send({ embed: editEmbed(e, sorted, formatted, page), })
       .then(async (newMessage) => {
-        // no paging required if list contains less than 10 entries
+        // no paging required for lists 10 or less
         if (sorted.length <= 10) {
           return;
         }
