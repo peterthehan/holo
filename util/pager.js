@@ -24,6 +24,11 @@ module.exports = {
     message.channel
       .send({ embed: editEmbed(e, sorted, formatted, page), })
       .then(async (newMessage) => {
+        // no paging required if list contains less than 10 entries
+        if (sorted.length <= 10) {
+          return;
+        }
+
         // add arrow_backward, stop_button, arrow_forward reactions
         await newMessage.react('◀');
         await newMessage.react('⏹');
