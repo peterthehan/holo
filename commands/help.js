@@ -17,7 +17,7 @@ exports.run = (message, args) => {
     title: 'Commands',
     description: `Prefix: ${[config.prefix, message.client.user,].filter(i => i).join(', ')}`,
     fields: Object.keys(cmds).map(i => {
-      return { name: i, value: cmds[i].join(', '), inline: false, };
+      return { name: i, value: cmds[i].join(', '), };
     }),
   };
 
