@@ -1,5 +1,4 @@
 const emoji = require('node-emoji');
-const { handleBadEmojis, } = require('./handleBadEmojis');
 
 module.exports = {
   aggregateEmojis: (db) => {
@@ -38,7 +37,7 @@ module.exports = {
   },
   filterData: (message, count) => {
     // ensure all current server emojis are represented
-    const emojis = handleBadEmojis(message);
+    const emojis = message.guild.emojis;
     for (let i of emojis.keyArray()) {
       if (!count[i]) {
         count[i] = 0;
