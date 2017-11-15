@@ -77,9 +77,11 @@ module.exports = {
     });
   },
   formatUsers: (message, sorted) => {
-    return sorted.map((i, index) => {
-      const user = message.guild.members.get(i.identifier).user;
-      return `${index + 1}. ${user} (${user.tag}): ${i.count}`;
-    });
+    return sorted
+      .filter(i => message.guild.members.get(i.identifier)) // remove nonexistent members
+      .map((i, index) => {
+        const user = message.guild.members.get(i.identifier).user;
+        return `${index + 1}. ${user} (${user.tag}): ${i.count}`;
+      });
   },
 }
