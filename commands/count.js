@@ -13,22 +13,22 @@ const {
 } = require('../util/processEmojis');
 const database = admin.database();
 
-serverInstructions = (message) => {
+countInstructions = (message) => {
   const prefix = !config.prefix ? `@${message.client.user.username} ` : config.prefix;
   const e = {
-    title: `${prefix}server [@mention] [all|server|default] [reverse]`,
+    title: `${prefix}count [@mention] [all|server|default] [reverse]`,
     fields: [
       {
         name: '@mention',
-        value: `Filter user. If omitted, defaults to server.\n*e.g. ${prefix}server @${message.guild.members.get(config.owner_id).user.username} all*`,
+        value: `Filter user. If omitted, defaults to server.\n*e.g. ${prefix}count @${message.guild.members.get(config.owner_id).user.username} all*`,
       },
       {
         name: 'all|server|default',
-        value: `List emojis.\n*e.g. ${prefix}server all*`,
+        value: `List emojis.\n*e.g. ${prefix}count all*`,
       },
       {
         name: 'reverse',
-        value: `List in ascending order.\n*e.g. ${prefix}server all reverse*`,
+        value: `List in ascending order.\n*e.g. ${prefix}count all reverse*`,
       },
     ],
   };
@@ -36,7 +36,7 @@ serverInstructions = (message) => {
   message.channel.send({ embed: e, });
 }
 
-serverInfo = (message, db, filter, user, isDescending) => {
+countInfo = (message, db, filter, user, isDescending) => {
   const aggregated = aggregateEmojis(db);
   const data = user != null
     ? filterEmojisByField(filterEmojisByType(aggregated, filter), 'user', user)
@@ -88,11 +88,11 @@ exports.run = (message, args) => {
       // determine sort order
       const isDescending = !['reverse', 'r',].some(i => args.includes(i));
 
-      serverInfo(message, db, filter, user, isDescending);
+      countInfo(message, db, filter, user, isDescending);
     }, (errorObject) => {
       console.log('The read failed: ' + errorObject.code);
     });
   } else {
-    serverInstructions(message);
+    countInstructions(message);
   }
 }

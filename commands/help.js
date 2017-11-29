@@ -8,8 +8,8 @@ exports.run = (message, args) => {
       'ping',
     ],
     'Database': [
+      'count',
       'emoji',
-      'server',
     ],
   };
 
