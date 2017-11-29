@@ -15,7 +15,7 @@
 Holo is a [Discord](https://discordapp.com/) bot that logs emoji usage for analysis. Holo is capable of tracking emojis from both messages and message reactions.
 
 ## Commands
-Prefix: ,, @mention
+Prefix: $, @mention
 
 - Bot:
   [about](https://github.com/Johj/holo/blob/master/commands/about.js),
@@ -79,7 +79,7 @@ The following instructions assume you are signed in with a Discord account.
   "databaseURL": "YOUR_DATABASE_URL_HERE",
   "reaction_timeout": "30000",
   "pager_timeout": "60000",
-  "prefix": ",",
+  "prefix": "$",
   "owner_id": "206161807491072000"
 }
 ```
