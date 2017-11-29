@@ -16,7 +16,7 @@ const database = admin.database();
 countInstructions = (message) => {
   const prefix = !config.prefix ? `@${message.client.user.username} ` : config.prefix;
   const e = {
-    title: `${prefix}count [@mention] [all|server|default] [reverse]`,
+    title: `${prefix}count [@mention] [all|server|default]`,
     fields: [
       {
         name: '@mention',
@@ -24,11 +24,7 @@ countInstructions = (message) => {
       },
       {
         name: 'all|server|default',
-        value: `Filter and list emojis by type.\n*e.g. ${prefix}count all*`,
-      },
-      {
-        name: 'reverse',
-        value: `List in ascending order.\n*e.g. ${prefix}count all reverse*`,
+        value: `Filter and list emojis by type in descending order.\n*e.g. ${prefix}count all*`,
       },
     ],
   };
@@ -36,13 +32,13 @@ countInstructions = (message) => {
   message.channel.send({ embed: e, });
 }
 
-countInfo = (message, db, filter, user, isDescending) => {
+countInfo = (message, db, filter, user) => {
   const aggregated = aggregateEmojis(db);
   const data = user != null
     ? filterEmojisByField(filterEmojisByType(aggregated, filter), 'user', user)
     : filterEmojisByType(aggregated, filter);
   const count = filterData(message, countData(data, 'identifier'));
-  const sorted = sortData(count, isDescending);
+  const sorted = sortData(count, true);
 
   if (!Object.keys(count).length || !(sorted[0].count + sorted[sorted.length - 1].count)) {
     error(message, '', `I have nothing to show you!`);
@@ -85,10 +81,7 @@ exports.run = (message, args) => {
         user = user.replace(/\D/gi, '');
       }
 
-      // determine sort order
-      const isDescending = !['reverse', 'r',].some(i => args.includes(i));
-
-      countInfo(message, db, filter, user, isDescending);
+      countInfo(message, db, filter, user);
     }, (errorObject) => {
       console.log('The read failed: ' + errorObject.code);
     });
