@@ -31,12 +31,11 @@ module.exports = {
 
         // add arrow_backward, stop_button, arrow_forward reactions
         await newMessage.react('◀');
-        await newMessage.react('⏹');
         await newMessage.react('▶');
 
         // create reactioncollector
         const collector = newMessage.createReactionCollector(
-          (reaction, user) => ['◀', '⏹', '▶',].includes(reaction.emoji.name) && user.id !== message.client.user.id,
+          (reaction, user) => ['◀', '▶',].includes(reaction.emoji.name) && user.id !== message.client.user.id,
           { time: parseInt(config.pager_timeout, 10), }
         );
 
@@ -50,12 +49,18 @@ module.exports = {
           });
 
           // paging logic
-          if (collected._emoji.name === '▶' && page !== Math.ceil(sorted.length / 10) - 1) {
-            ++page;
-          } else if (collected._emoji.name === '◀' && page !== 0) {
-            --page;
-          } else if (collected._emoji.name === '⏹') {
-            collector.stop();
+          if (collected._emoji.name === '▶') {
+            if (page !== Math.ceil(sorted.length / 10) - 1) {
+              ++page;
+            } else {
+              page = 0;
+            }
+          } else if (collected._emoji.name === '◀') {
+            if (page !== 0) {
+              --page;
+            } else {
+              page = Math.ceil(sorted.length / 10) - 1;
+            }
           }
 
           // edit view
