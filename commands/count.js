@@ -20,11 +20,11 @@ countInstructions = (message) => {
     fields: [
       {
         name: '@mention',
-        value: `Filter user. If omitted, defaults to server.\n*e.g. ${prefix}count @${message.guild.members.get(config.owner_id).user.username} all*`,
+        value: `Filter user. If omitted, defaults to all server members.\n*e.g. ${prefix}count @${message.guild.members.get(config.owner_id).user.username} all*`,
       },
       {
         name: 'all|server|default',
-        value: `List emojis.\n*e.g. ${prefix}count all*`,
+        value: `Filter and list emojis by type.\n*e.g. ${prefix}count all*`,
       },
       {
         name: 'reverse',

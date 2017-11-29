@@ -12,14 +12,14 @@ const {
 } = require('../util/processEmojis');
 const database = admin.database();
 
-emojiInstructions = (message) => {
+usersInstructions = (message) => {
   const prefix = !config.prefix ? `@${message.client.user.username} ` : config.prefix;
   const e = {
-    title: `${prefix}emoji [:emoji:]`,
+    title: `${prefix}users [:emoji:]`,
     fields: [
       {
         name: ':emoji:',
-        value: `List emoji users.\n*e.g. ${prefix}emoji :thinking:*`,
+        value: `List emoji users by frequency in descending order.\n*e.g. ${prefix}users :thinking:*`,
       },
     ],
   };
@@ -27,7 +27,7 @@ emojiInstructions = (message) => {
   message.channel.send({ embed: e, });
 }
 
-emojiInfo = (message, db, filter) => {
+usersInfo = (message, db, filter) => {
   const aggregated = aggregateEmojis(db);
   const data = filterEmojisByField(aggregated, 'identifier', filter);
   const count = countData(data, 'user');
@@ -72,11 +72,11 @@ exports.run = (message, args) => {
         : filter.match(/:\d+>/)[0];
       filter = filter.substring(1, filter.length - 1);
 
-      emojiInfo(message, db, filter);
+      usersInfo(message, db, filter);
     }, (errorObject) => {
       console.log('The read failed: ' + errorObject.code);
     });
   } else {
-    emojiInstructions(message);
+    usersInstructions(message);
   }
 }

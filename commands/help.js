@@ -9,7 +9,8 @@ exports.run = (message, args) => {
     ],
     'Database': [
       'count',
-      'emoji',
+      'emojis',
+      'users',
     ],
   };
 
