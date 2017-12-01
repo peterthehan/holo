@@ -23,8 +23,10 @@ Prefix: $, @mention
   [ping](https://github.com/Johj/holo/blob/master/commands/ping.js)
 - Database:
   [count](https://github.com/Johj/holo/blob/master/commands/count.js),
-  [emojis](https://github.com/Johj/holo/blob/master/commands/emojis.js),
+  [rate](https://github.com/Johj/holo/blob/master/commands/rate.js),
   [users](https://github.com/Johj/holo/blob/master/commands/users.js)
+- Miscellaneous:
+  [emojis](https://github.com/Johj/holo/blob/master/commands/emojis.js)
 
 ## Setup
 Read the following to host Holo yourself!
