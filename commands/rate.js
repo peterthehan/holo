@@ -8,23 +8,24 @@ const {
   filterEmojisByField,
   countData,
   filterData,
+  calculateRate,
   sortData,
   formatEmojis,
 } = require('../util/processEmojis');
 const database = admin.database();
 
-countInstructions = (message) => {
+rateInstructions = (message) => {
   const prefix = !config.prefix ? `@${message.client.user.username} ` : config.prefix;
   const e = {
-    title: `${prefix}count [@mention] [all|server|default]`,
+    title: `${prefix}rate [@mention] [all|server|default]`,
     fields: [
       {
         name: '@mention',
-        value: `Filter user. If omitted, defaults to include all server members.\n*e.g. ${prefix}count @${message.guild.members.get(config.owner_id).user.username} all*`,
+        value: `Filter user. If omitted, defaults to include all server members.\n*e.g. ${prefix}rate @${message.guild.members.get(config.owner_id).user.username} all*`,
       },
       {
         name: 'all|server|default',
-        value: `Filter emojis by type and list emojis by count in descending order.\n*e.g. ${prefix}count all*`,
+        value: `Filter emojis by type and list emojis by count per day in descending order.\n*e.g. ${prefix}rate all*`,
       },
     ],
   };
@@ -32,13 +33,14 @@ countInstructions = (message) => {
   message.channel.send({ embed: e, });
 }
 
-countInfo = (message, db, filter, user) => {
+rateInfo = (message, db, filter, user) => {
   const aggregated = aggregateEmojis(db);
   const data = user != null
     ? filterEmojisByField(filterEmojisByType(aggregated, filter), 'user', user)
     : filterEmojisByType(aggregated, filter);
   const count = filterData(message, countData(data, 'identifier'), filter);
-  const sorted = sortData(count, true);
+  const rate = calculateRate(message, count);
+  const sorted = sortData(rate, true);
 
   if (!Object.keys(count).length || !(sorted[0].count + sorted[sorted.length - 1].count)) {
     error(message, '', `I have nothing to show you!`);
@@ -81,11 +83,11 @@ exports.run = (message, args) => {
         user = user.replace(/\D/gi, '');
       }
 
-      countInfo(message, db, filter, user);
+      rateInfo(message, db, filter, user);
     }, (errorObject) => {
       console.log('The read failed: ' + errorObject.code);
     });
   } else {
-    countInstructions(message);
+    rateInstructions(message);
   }
 }

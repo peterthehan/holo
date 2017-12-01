@@ -35,22 +35,36 @@ module.exports = {
 
     return count;
   },
-  filterData: (message, count) => {
-    // ensure all current server emojis are represented
+  filterData: (message, count, filter) => {
     const emojis = message.guild.emojis;
-    for (let i of emojis.keyArray()) {
-      if (!count[i]) {
-        count[i] = 0;
+    
+    // ensure all current server emojis are represented
+    if (filter !== 'default') {
+      for (let i of emojis.keyArray()) {
+        if (!count[i]) {
+          count[i] = 0;
+        }
       }
     }
 
     // remove retired server emojis
     for (let i of Object.keys(count)) {
-      if (emoji.hasEmoji(i) || emojis.has(i)) {
-        continue;
+      if (!emoji.hasEmoji(i) && !emojis.has(i)) {
+        delete count[i];
       }
+    }
 
-      delete count[i];
+    return count;
+  },
+  calculateRate: (message, count) => {
+    // todo: handle case for when bot leaves guild and rejoins
+    for (let i of Object.keys(count)) {
+      // convert ms to days
+      const time = (Date.now() - (emoji.hasEmoji(i)
+        ? message.guild.members.get(message.client.user.id).joinedTimestamp
+        : message.guild.emojis.get(i).createdTimestamp)) / 86400000;
+
+      count[i] = +(count[i] / time).toFixed(2);
     }
 
     return count;
