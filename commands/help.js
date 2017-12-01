@@ -9,8 +9,11 @@ exports.run = (message, args) => {
     ],
     'Database': [
       'count',
-      'emojis',
+      'rate',
       'users',
+    ],
+    'Miscellaneous': [
+      'emojis',
     ],
   };
 
