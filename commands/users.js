@@ -19,7 +19,7 @@ usersInstructions = (message) => {
     fields: [
       {
         name: ':emoji:',
-        value: `List emoji users by frequency in descending order.\n*e.g. ${prefix}users :thinking:*`,
+        value: `List emoji users by count in descending order.\n*e.g. ${prefix}users :thinking:*`,
       },
     ],
   };
