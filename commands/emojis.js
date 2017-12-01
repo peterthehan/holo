@@ -2,14 +2,12 @@ const { error, } = require('../util/log');
 
 exports.run = (message, args) => {
   const guild = message.guild;
-
   if (!guild || !guild.available) {
     error(message, 'Error', `Server information unavailable.`);
     return;
   }
 
-  let emojis = guild.emojis;
-
+  const emojis = guild.emojis;
   if (!emojis.size) {
     error(message, '', `${guild.name} has no server emojis to list!`);
     return;
