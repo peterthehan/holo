@@ -10,7 +10,7 @@ function editEmbed(e, sorted, formatted, page) {
   const currentCount = getTotalCount(getCurrentPage(sorted, page));
   const totalCount = getTotalCount(sorted);
 
-  e.title = `${currentCount}/${totalCount} (${(currentCount / totalCount * 100).toFixed(2)}%)`;
+  e.title = `${Math.round(currentCount)}/${Math.round(totalCount)} (${(currentCount / totalCount * 100).toFixed(2)}%)`;
   e.description = currentPage.join('\n');
   e.footer = { text: `Page ${page + 1}/${Math.ceil(sorted.length / 10)}`, };
 
