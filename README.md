@@ -14,6 +14,14 @@
 ## About
 Holo is a [Discord](https://discordapp.com/) bot that logs emoji usage for analysis. Holo is capable of tracking emojis from both messages and message reactions.
 
+Keep your server emojis current and relevant!
+
+<div align="center">
+  <p>
+    <img src="https://raw.githubusercontent.com/Johj/holo/master/assets/count.gif" title="Holo" />
+  </p>
+</div>
+
 ## Commands
 Prefix: $, @mention
 
@@ -28,8 +36,31 @@ Prefix: $, @mention
 - Miscellaneous:
   [emojis](https://github.com/Johj/holo/blob/master/commands/emojis.js)
 
+## Command Usage
+
+- **$count [@mention] [all|server|default]**  
+**@mention**  
+Filter user. If omitted, defaults to include all server members.  
+*e.g. $count @Miku all*  
+**all|server|default**  
+Filter emojis by type and list emojis by count in descending order.  
+*e.g. $count all*
+
+- **$rate [@mention] [all|server|default]**  
+**@mention**  
+Filter user. If omitted, defaults to include all server members.  
+*e.g. $rate @Miku all*  
+**all|server|default**  
+Filter emojis by type and list emojis by count per day in descending order.  
+*e.g. $rate all*
+
+- **$users [:emoji:]**  
+**:emoji:**  
+List emoji users by count in descending order.  
+*e.g. $users* :thinking:
+
 ## Setup
-Read the following to host Holo yourself!
+Holo requires you to host her yourself! Read the following for setup instructions.
 
 #### Firebase Setup
 The following instructions assume you are signed in with a Google account.
@@ -38,7 +69,7 @@ The following instructions assume you are signed in with a Google account.
 2. Click `GO TO CONSOLE`, located on the site's navigation bar.
 3. Create a new project.
 4. Go to `Database`, located on the sidebar, and click the `GET STARTED` button.
-    * Under the `DATA` tab, take note of the database URL (e.g. `https://your-project-name.firebaseio.com/`) associated with your project. You will need this [later](https://github.com/Johj/holo#get-holo).
+    1. Under the `DATA` tab, take note of the database URL (e.g. `https://YOUR-PROJECT-NAME-HERE.firebaseio.com/`) associated with your project. You will need this [later](https://github.com/Johj/holo#get-holo).
 5. Go to the `RULES` tab and set your rules to the following:
 
 ```js
@@ -55,7 +86,7 @@ The following instructions assume you are signed in with a Google account.
 7. Go to the `SERVICE ACCOUNTS` tab and click the `GENERATE NEW PRIVATE KEY` button. This will download a unique file containing Firebase Admin credentials.
 8. Rename the file to `serviceAccountKey.json`.
 
->Keep this credentials file **private**!
+>Keep this `serviceAccountKey.json` credentials file **private**!
 
 #### Discord Bot Setup
 The following instructions assume you are signed in with a Discord account.
@@ -82,13 +113,21 @@ The following instructions assume you are signed in with a Discord account.
   "reaction_timeout": "30000",
   "pager_timeout": "60000",
   "prefix": "$",
-  "owner_id": "206161807491072000"
+  "owner_id": "YOUR_DISCORD_ACCOUNT_ID_HERE"
 }
 ```
+
+>`token` is from the [Discord Bot Setup](https://github.com/Johj/holo#discord-bot-setup) section, step #5.
+
+>`databaseURL` is from the [Firebase Setup](https://github.com/Johj/holo#firebase-setup) section, step #4i.
 
 >`reaction_timeout` (in milliseconds) is how long Holo looks at each message for user reactions. Keep it somewhere between 15000 and 30000 for optimal performance.
 
 >`pager_timeout` (in milliseconds) is how long Holo looks at each command message for pagination. Keep it somewhere between 30000 and 60000 for optimal duration.
+
+>`prefix` is your preferred command prefix. If omitted, commands can be used by mentioning the bot in place of the command prefix. *e.g.* `@Holo ping`
+
+>`owner_id` is your Discord account ID. Navigate to `User Settings` and under the `Appearance` tab, enable `Developer Mode`. Right-click your name to open up the context menu which will display the option to `Copy ID`.
 
 #### Run Holo
 1. Type `npm test` or `node index.js` to run. Holo is ready to log!
