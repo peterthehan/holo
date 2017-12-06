@@ -65,6 +65,8 @@ Holo requires you to host her yourself! Read the following for setup instruction
 #### Firebase Setup
 The following instructions assume you are signed in with a Google account.
 
+>Be aware that Firebase has a generous [free plan](https://firebase.google.com/pricing/) for hobbyists but exceeding certain limits may incur charges or stop your service. If you're using Holo on a small server, you have almost nothing to worry about.
+
 1. Go to [Firebase](https://firebase.google.com/).
 2. Click `GO TO CONSOLE`, located on the site's navigation bar.
 3. Create a new project.
@@ -125,7 +127,7 @@ The following instructions assume you are signed in with a Discord account.
 
 >`pager_timeout` (in milliseconds) is how long Holo looks at each command message for pagination. Keep it somewhere between 30000 and 60000 for optimal duration.
 
->`prefix` is your preferred command prefix. If omitted, commands can be used by mentioning the bot in place of the command prefix. *e.g.* `@Holo ping`
+>`prefix` is your preferred command prefix. If omitted, commands can be used by mentioning the bot in place of the command prefix. *e.g. @Holo ping*
 
 >`owner_id` is your Discord account ID. Navigate to `User Settings` and under the `Appearance` tab, enable `Developer Mode`. Right-click your name to open up the context menu which will display the option to `Copy ID`.
 
