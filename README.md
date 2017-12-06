@@ -65,7 +65,7 @@ Holo requires you to host her yourself! Read the following for setup instruction
 #### Firebase Setup
 The following instructions assume you are signed in with a Google account.
 
->Be aware that Firebase has a generous [free plan](https://firebase.google.com/pricing/) for hobbyists but exceeding certain limits may incur charges or stop your service. If you're using Holo on a small server, you have almost nothing to worry about.
+>Be aware that Firebase has a generous [free plan](https://firebase.google.com/pricing/) for hobbyists but exceeding certain limits will [stop your service](https://firebase.google.com/support/faq/#pricing) for the month. If you're using Holo on a small server, you have almost nothing to worry about.
 
 1. Go to [Firebase](https://firebase.google.com/).
 2. Click `GO TO CONSOLE`, located on the site's navigation bar.
