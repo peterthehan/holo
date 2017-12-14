@@ -52,12 +52,15 @@ module.exports = {
     const filteredServerEmojiIds = emojis.filter(i => !i.isDefault).map(i => i.identifier);
     const uniqueServerEmojiIds = [...new Set(filteredServerEmojiIds)]; // remove duplicates
 
-    const paths = uniqueServerEmojiIds.map(i => `guilds/${message.guild.id}/emojis/${i}`);
-    const updates = uniqueServerEmojiIds.map(i => {
-      return {
-        name: message.guild.emojis.get(i).name,
-        url: message.guild.emojis.get(i).url,
-      };
+    const paths = [];
+    const updates = [];
+    uniqueServerEmojiIds.forEach(i => {
+      const emoji = message.guild.emojis.get(i);
+
+      if (emoji) {
+        paths.push(`guilds/${message.guild.id}/emojis/${i}`);
+        updates.push({ name: emoji.name, url: emoji.url, });
+      }
     });
 
     return updateObj(paths, updates);
