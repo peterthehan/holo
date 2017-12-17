@@ -26,15 +26,15 @@ Keep your server emojis current and relevant!
 Prefix: $, @mention
 
 - Bot:
-  [about](https://github.com/Johj/holo/blob/master/commands/about.js),
-  [help](https://github.com/Johj/holo/blob/master/commands/help.js),
-  [ping](https://github.com/Johj/holo/blob/master/commands/ping.js)
+  [about](https://github.com/Johj/holo/blob/master/src/commands/about.js),
+  [help](https://github.com/Johj/holo/blob/master/src/commands/help.js),
+  [ping](https://github.com/Johj/holo/blob/master/src/commands/ping.js)
 - Database:
-  [count](https://github.com/Johj/holo/blob/master/commands/count.js),
-  [rate](https://github.com/Johj/holo/blob/master/commands/rate.js),
-  [users](https://github.com/Johj/holo/blob/master/commands/users.js)
+  [count](https://github.com/Johj/holo/blob/master/src/commands/count.js),
+  [rate](https://github.com/Johj/holo/blob/master/src/commands/rate.js),
+  [users](https://github.com/Johj/holo/blob/master/src/commands/users.js)
 - Miscellaneous:
-  [emojis](https://github.com/Johj/holo/blob/master/commands/emojis.js)
+  [emojis](https://github.com/Johj/holo/blob/master/src/commands/emojis.js)
 
 ## Command Usage
 

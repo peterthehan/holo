@@ -6,13 +6,7 @@ exports.run = (message, args) => {
     .then(newMessage => {
       e = {
         title: 'Pong! 🏓',
-        fields: [
-          {
-            name: 'HTTP ping',
-            value: `${newMessage.createdTimestamp - message.createdTimestamp} ms`,
-            inline: true,
-          },
-        ],
+        description: `${newMessage.createdTimestamp - message.createdTimestamp} ms`,
       };
 
       newMessage.edit({ embed: e, });
