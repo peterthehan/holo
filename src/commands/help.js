@@ -12,9 +12,6 @@ exports.run = (message, args) => {
       'rate',
       'users',
     ],
-    'Miscellaneous': [
-      'emojis',
-    ],
   };
 
   const e = {

@@ -33,8 +33,6 @@ Prefix: $, @mention
   [count](https://github.com/Johj/holo/blob/master/src/commands/count.js),
   [rate](https://github.com/Johj/holo/blob/master/src/commands/rate.js),
   [users](https://github.com/Johj/holo/blob/master/src/commands/users.js)
-- Miscellaneous:
-  [emojis](https://github.com/Johj/holo/blob/master/src/commands/emojis.js)
 
 ## Command Usage
 
