@@ -29,7 +29,7 @@ module.exports = {
           return;
         }
 
-        // add arrow_backward, stop_button, arrow_forward reactions
+        // add arrow_backward, arrow_forward reactions
         await newMessage.react('◀');
         await newMessage.react('▶');
 
@@ -72,4 +72,4 @@ module.exports = {
       })
       .catch(error => console.log(error));
   },
-}
+};

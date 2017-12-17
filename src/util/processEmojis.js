@@ -97,4 +97,4 @@ module.exports = {
         return `${index + 1}. ${user} (${user.tag}): ${i.count}`;
       });
   },
-}
+};

@@ -31,4 +31,4 @@ module.exports = {
       console.log(`${error.name}: ${error.message}`);
     }
   },
-}
+};

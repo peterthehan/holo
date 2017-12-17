@@ -54,4 +54,4 @@ module.exports = {
       writeData(message, emojis, 'Reaction');
     });
   },
-}
+};

@@ -10,4 +10,4 @@ module.exports = {
     message.channel.send({ embed: e, });
     console.log(description);
   },
-}
+};

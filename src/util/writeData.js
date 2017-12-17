@@ -32,4 +32,4 @@ module.exports = {
     log(message);
     emojiLog(message, emojis, type);
   },
-}
+};
