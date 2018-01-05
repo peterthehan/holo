@@ -130,7 +130,7 @@ The following instructions assume you are signed in with a Discord account.
 >`owner_id` is your Discord account ID. Navigate to `User Settings` and under the `Appearance` tab, enable `Developer Mode`. Right-click your name to open up the context menu which will display the option to `Copy ID`.
 
 #### Run Holo
-1. Type `npm test` or `node index.js` to run. Holo is ready to log!
+1. Type `npm start` or `node src/index.js` to run. Holo is ready to log!
 
 ## Data Format
 ```js
