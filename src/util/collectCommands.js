@@ -25,8 +25,8 @@ module.exports = {
 
     // check if command file exists
     try {
-      require(`../commands/${command}`).run(message, args);
       log(message);
+      require(`../commands/${command}`).run(message, args);
     } catch (error) {
       console.log(`${error.name}: ${error.message}`);
     }
