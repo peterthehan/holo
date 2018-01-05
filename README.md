@@ -12,6 +12,7 @@
 </div>
 
 ## About
+
 Holo is a [Discord](https://discordapp.com/) bot that logs emoji usage for analysis. Holo is capable of tracking emojis from both messages and message reactions.
 
 Keep your server emojis current and relevant!
@@ -23,6 +24,7 @@ Keep your server emojis current and relevant!
 </div>
 
 ## Commands
+
 Prefix: $, @mention
 
 - Bot:
@@ -58,9 +60,11 @@ List emoji users by count in descending order.
 *e.g. $users* :thinking:
 
 ## Setup
+
 Holo requires you to host her yourself! Read the following for setup instructions.
 
 #### Firebase Setup
+
 The following instructions assume you are signed in with a Google account.
 
 >Be aware that Firebase has a generous [free plan](https://firebase.google.com/pricing/) for hobbyists but exceeding certain limits will [stop your service](https://firebase.google.com/support/faq/#pricing) for the month. If you're using Holo on a small server, you have almost nothing to worry about.
@@ -89,6 +93,7 @@ The following instructions assume you are signed in with a Google account.
 >Keep this `serviceAccountKey.json` credentials file **private**!
 
 #### Discord Bot Setup
+
 The following instructions assume you are signed in with a Discord account.
 
 1. Go to Discord's [My Apps](https://discordapp.com/developers/applications/me) page.
@@ -130,9 +135,11 @@ The following instructions assume you are signed in with a Discord account.
 >`owner_id` is your Discord account ID. Navigate to `User Settings` and under the `Appearance` tab, enable `Developer Mode`. Right-click your name to open up the context menu which will display the option to `Copy ID`.
 
 #### Run Holo
+
 1. Type `npm start` or `node src/index.js` to run. Holo is ready to log!
 
 ## Data Format
+
 ```js
 {
   "guilds" : {
