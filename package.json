@@ -3,12 +3,11 @@
   "version": "1.0.0",
   "description": "Holo is a Discord bot that logs emoji usage for analysis.",
   "engines": {
-    "node": "8.9.3"
+    "node": "8.9.4"
   },
-  "main": "index.js",
   "dependencies": {
     "discord.js": "^11.2.1",
-    "firebase-admin": "^5.4.1",
+    "firebase-admin": "^5.7.0",
     "node-emoji": "^1.8.1"
   },
   "scripts": {
