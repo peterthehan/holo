@@ -103,8 +103,8 @@ The following instructions assume you are signed in with a Discord account.
 
 1. Type `git clone https://github.com/Johj/holo.git`.
 2. Type `cd holo/` and `npm install`.
-3. Move the `serviceAccountKey.json` file to the root of the Holo project folder.
-4. Create a new file named `config.json` at the root of the Holo project folder. The file should contain the following:
+3. Move the `serviceAccountKey.json` file to the root of the `src` folder.
+4. Create a new file named `config.json` at the root of the `src` folder. The file should contain the following:
 
 ```js
 {
