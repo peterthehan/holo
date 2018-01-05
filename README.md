@@ -2,7 +2,6 @@
   <p>
     <img src="https://raw.githubusercontent.com/Johj/holo/master/assets/holo_banner.png" title="Holo" />
   </p>
-
   <a href="https://www.npmjs.com/package/discord.js">
     <img src="https://img.shields.io/badge/discord.js-v11.2.1-blue.svg" title="Discord.js" />
   </a>
