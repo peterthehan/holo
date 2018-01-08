@@ -56,8 +56,10 @@ module.exports = {
 
     return count;
   },
-  calculateRate: (message, count) => {
+  calculateRate: (message, c) => {
     // todo: handle case for when bot leaves guild and rejoins
+    const count = Object.assign({}, c);
+
     for (let i of Object.keys(count)) {
       // convert ms to days
       const time = (Date.now() - (emoji.hasEmoji(i)

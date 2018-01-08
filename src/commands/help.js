@@ -10,6 +10,7 @@ exports.run = (message, args) => {
     'Database': [
       'count',
       'rate',
+      'recommend',
       'users',
     ],
   };
