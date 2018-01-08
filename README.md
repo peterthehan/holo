@@ -33,6 +33,7 @@ Prefix: $, @mention
 - Database:
   [count](https://github.com/Johj/holo/blob/master/src/commands/count.js),
   [rate](https://github.com/Johj/holo/blob/master/src/commands/rate.js),
+  [recommend](https://github.com/Johj/holo/blob/master/src/commands/recommend.js),
   [users](https://github.com/Johj/holo/blob/master/src/commands/users.js)
 
 ## Command Usage
@@ -52,6 +53,9 @@ Filter user. If omitted, defaults to include all server members.
 **all|server|default**  
 Filter emojis by type and list emojis by count per day in descending order.  
 *e.g. $rate all*
+
+- **$recommend**  
+Recommend unused emojis for removal by finding the intersection between the 10 lowest results of the count and rate commands.
 
 - **$users [:emoji:]**  
 **:emoji:**  
