@@ -1,6 +1,7 @@
+const config = require('../config.json');
+
 module.exports = (client) => {
-  const items = ['apples', 'wheat', 'coins', 'beer', 'my tail',];
-  const index = new Date().getDate() % items.length;
-  client.user.setGame(`with ${items[index]}.`);
+  const prefix = !config.prefix ? `@${client.user.username} ` : config.prefix;
+  client.user.setGame(`${prefix}help`);
   console.log(`${client.user.tag}: Ready`);
 }
