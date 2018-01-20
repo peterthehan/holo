@@ -1,3 +1,4 @@
+const fs = require('fs');
 const config = require('../config.json');
 const { log, } = require('./log');
 
@@ -24,6 +25,11 @@ module.exports = {
     }
 
     // check if command file exists
+    const commandFiles = fs.readdirSync('./commands').map(i => i.slice(0, -3));
+    if (!commandFiles.includes(command)) {
+      return;
+    }
+
     try {
       log(message);
       require(`../commands/${command}`).run(message, args);
