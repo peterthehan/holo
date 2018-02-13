@@ -12,9 +12,9 @@
 
 ## About
 
-Holo is a [Discord](https://discordapp.com/) bot that logs emoji usage for analysis. Holo is capable of tracking emojis from both messages and message reactions.
+Holo is a [Discord](https://discordapp.com/) statistics bot that tracks user emoji usage. Holo is capable of tracking emojis from both messages and message reactions.
 
-Keep your server emojis current and relevant!
+Current and relevant server emojis make for happy users!
 
 <div align="center">
   <p>
@@ -51,7 +51,7 @@ Filter emojis by type and list emojis by count in descending order.
 Filter user. If omitted, defaults to include all server members.  
 *e.g. $rate @Miku all*  
 **all|server|default**  
-Filter emojis by type and list emojis by count per day in descending order.  
+Filter emojis by type and list emojis by count per day in descending order.
 *e.g. $rate all*
 
 - **$recommend**  
