@@ -8,7 +8,7 @@ exports.run = (message, args) => {
     fields: [
       {
         name: 'Join Server',
-        value: '[cqdb](https://discord.gg/WjEFnzC)',
+        value: '[idk](https://discord.gg/WjEFnzC)',
         inline: true,
       },
       {
