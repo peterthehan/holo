@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "discord.js": "^11.3.2",
-    "firebase-admin": "^5.11.0",
+    "firebase-admin": "^5.12.0",
     "node-emoji": "^1.8.1"
   },
   "scripts": {
