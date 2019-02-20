@@ -13,7 +13,7 @@ exports.run = (message, args) => {
       },
       {
         name: 'GitHub',
-        value: '[/Johj/holo](https://github.com/Johj/holo)',
+        value: '[/peterthehan/holo](https://github.com/peterthehan/holo)',
         inline: true,
       },
     ],
