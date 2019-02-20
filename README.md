@@ -1,6 +1,6 @@
 <div align="center">
   <p>
-    <img src="https://raw.githubusercontent.com/Johj/holo/master/assets/holo_banner.png" title="Holo" />
+    <img src="https://raw.githubusercontent.com/peterthehan/holo/master/assets/holo_banner.png" title="Holo" />
   </p>
   <a href="https://www.npmjs.com/package/discord.js">
     <img src="https://img.shields.io/badge/discord.js-v11.2.1-blue.svg" title="Discord.js" />
@@ -15,7 +15,7 @@ Current and relevant server emojis make for happy users!
 
 <div align="center">
   <p>
-    <img src="https://raw.githubusercontent.com/Johj/holo/master/assets/count.gif" title="Holo" />
+    <img src="https://raw.githubusercontent.com/peterthehan/holo/master/assets/count.gif" title="Holo" />
   </p>
 </div>
 
@@ -24,14 +24,14 @@ Current and relevant server emojis make for happy users!
 Prefix: $, @mention
 
 - Bot:
-  [about](https://github.com/Johj/holo/blob/master/src/commands/about.js),
-  [help](https://github.com/Johj/holo/blob/master/src/commands/help.js),
-  [ping](https://github.com/Johj/holo/blob/master/src/commands/ping.js)
+  [about](https://github.com/peterthehan/holo/blob/master/src/commands/about.js),
+  [help](https://github.com/peterthehan/holo/blob/master/src/commands/help.js),
+  [ping](https://github.com/peterthehan/holo/blob/master/src/commands/ping.js)
 - Database:
-  [count](https://github.com/Johj/holo/blob/master/src/commands/count.js),
-  [rate](https://github.com/Johj/holo/blob/master/src/commands/rate.js),
-  [recommend](https://github.com/Johj/holo/blob/master/src/commands/recommend.js),
-  [users](https://github.com/Johj/holo/blob/master/src/commands/users.js)
+  [count](https://github.com/peterthehan/holo/blob/master/src/commands/count.js),
+  [rate](https://github.com/peterthehan/holo/blob/master/src/commands/rate.js),
+  [recommend](https://github.com/peterthehan/holo/blob/master/src/commands/recommend.js),
+  [users](https://github.com/peterthehan/holo/blob/master/src/commands/users.js)
 
 ## Command Usage
 
@@ -106,7 +106,7 @@ The following instructions assume you are signed in with a Discord account.
 
 #### Get Holo
 
-1. Type `git clone https://github.com/Johj/holo.git`.
+1. Type `git clone https://github.com/peterthehan/holo.git`.
 2. Type `cd holo/` and `npm install`.
 3. Move the `serviceAccountKey.json` file to the root of the `src` folder.
 4. Create a new file named `config.json` at the root of the `src` folder. The file should contain the following:
@@ -122,9 +122,9 @@ The following instructions assume you are signed in with a Discord account.
 }
 ```
 
->`token` is from the [Discord Bot Setup](https://github.com/Johj/holo#discord-bot-setup) section, step #5.
+>`token` is from the [Discord Bot Setup](https://github.com/peterthehan/holo#discord-bot-setup) section, step #5.
 
->`databaseURL` is from the [Firebase Setup](https://github.com/Johj/holo#firebase-setup) section, step #4i.
+>`databaseURL` is from the [Firebase Setup](https://github.com/peterthehan/holo#firebase-setup) section, step #4i.
 
 >`reaction_timeout` (in milliseconds) is how long Holo looks at each message for user reactions. Keep it somewhere between 15000 and 30000 for optimal performance.
 
