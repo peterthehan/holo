@@ -5,9 +5,6 @@
   <a href="https://www.npmjs.com/package/discord.js">
     <img src="https://img.shields.io/badge/discord.js-v11.2.1-blue.svg" title="Discord.js" />
   </a>
-  <a href="https://david-dm.org/Johj/holo">
-    <img src="https://img.shields.io/david/Johj/holo.svg" title="Dependencies" />
-  </a>
 </div>
 
 ## About
