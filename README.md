@@ -73,7 +73,7 @@ The following instructions assume you are signed in with a Google account.
 2. Click `GO TO CONSOLE`, located on the site's navigation bar.
 3. Create a new project.
 4. Go to `Database`, located on the sidebar, and click the `GET STARTED` button.
-    1. Under the `DATA` tab, take note of the database URL (e.g. `https://YOUR-PROJECT-NAME-HERE.firebaseio.com/`) associated with your project. You will need this [later](https://github.com/Johj/holo#get-holo).
+    1. Under the `DATA` tab, take note of the database URL (e.g. `https://YOUR-PROJECT-NAME-HERE.firebaseio.com/`) associated with your project. You will need this [later](https://github.com/peterthehan/holo#get-holo).
 5. Go to the `RULES` tab and set your rules to the following:
 
 ```js
