@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Johj/holo.git"
+    "url": "https://github.com/peterthehan/holo.git"
   },
   "keywords": [
     "discord",
@@ -27,7 +27,7 @@
   "author": "Peter Han",
   "license": "GPL-3.0",
   "bugs": {
-    "url": "https://github.com/Johj/holo/issues"
+    "url": "https://github.com/peterthehan/holo/issues"
   },
-  "homepage": "https://github.com/Johj/holo#readme"
+  "homepage": "https://github.com/peterthehan/holo#readme"
 }
