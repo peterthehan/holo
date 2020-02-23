@@ -1,3 +1,5 @@
+# This project is deprecated! Visit https://github.com/peterthehan/discord-emoji-log-bot.
+
 <div align="center">
   <p>
     <img src="https://raw.githubusercontent.com/peterthehan/holo/master/assets/holo_banner.png" title="Holo" />
